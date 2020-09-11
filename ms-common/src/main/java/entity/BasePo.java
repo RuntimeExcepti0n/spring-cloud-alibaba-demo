@@ -11,9 +11,7 @@ import java.time.LocalDateTime;
 /**
  * @ClassName: BasePo
  * @Description: 基本Po类
- * @author: zhoulong1
  * @date: 2020/5/18
- * @Copyright: 2020 www.baoneng.com Inc. All rights reserved. 注意：本内容仅限于宝能汽车公司内部传阅，禁止外泄以及用于其他的商业目的
  */
 @Data
 public class BasePo {

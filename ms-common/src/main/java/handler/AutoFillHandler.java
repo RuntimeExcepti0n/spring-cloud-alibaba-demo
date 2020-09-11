@@ -39,7 +39,7 @@ public class AutoFillHandler implements MetaObjectHandler
         // 操作人自动填充默认值
         if (operator == null)
         {
-            throw new AdamException("操作人不能为空");
+            throw new BussinessException("操作人不能为空");
         }
         // 逻辑删除自动填充默认值
         if (delFlag == null)
@@ -69,7 +69,7 @@ public class AutoFillHandler implements MetaObjectHandler
         // 操作人自动填充默认值
         if (operator == null)
         {
-            throw new AdamException("操作人不能为空");
+            throw new BussinessException("操作人不能为空");
         }
     }
 }

@@ -9,10 +9,8 @@ import injector.method.SaveAllInBatch;
 import java.util.List;
 
 /**
- * @author zhangjianghua1
  * @ClassName: MyLogicSqlInjector
  * @Description: 添加自定义mapper方法
- * @Copyright: 2020 www.baoneng.com Inc. All rights reserved. 注意：本内容仅限于宝能汽车公司内部传阅，禁止外泄以及用于其他的商业目的
  * @since 2020-06-22
  */
 public class AdamLogicSqlInjector extends DefaultSqlInjector {
