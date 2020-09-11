@@ -2,63 +2,32 @@ server:
   port: 8081
   servlet:
     context-path: /ms-alibaba-consumer
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.210.100.17:3306/db_tsp_maintenance?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: Bnqc@2020
-    type: com.alibaba.druid.pool.DruidDataSource
-    # 初始化大小，最小等待连接数量，最大等待连接数量，最大连接数
-    initialSize: 1
-    minIdle: 1
-    maxIdle: 5
-    maxActive: 20
-    # 配置获取连接等待超时的时间
-    maxWait: 60000
-    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-    timeBetweenEvictionRunsMillis: 60000
-    # 配置一个连接在池中最小生存的时间，单位是毫秒
-    minEvictableIdleTimeMillis: 300000
-    #用来检测连接是否有效的sql，要求是一个查询语句
-    validationQuery: SELECT 1 FROM DUAL
-    #建议配置为true，不影响性能，并且保证安全性。指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除. 。
-    testWhileIdle: true
-    #申请连接时执行validationQuery检测连接是否有效，做了这个配置会 降低性能。
-    testOnBorrow: true
-    #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降 低性能。
-    testOnReturn: false
-  redis:
-    #host: 127.0.0.1
-    host: 10.210.100.17
-    password: Bnqc@2020
-    port: 6379
-    timeout: 3000
-    lettuce:
-      pool:
-        max-active: 1000
-        max-idle: 100
-        min-idle: 10
-        max-wait: 3000
 
-  logging:
-    level:
-      java.sql.PreparedStatement: debug
-    path: logs/
-    file:
-      max-size: 1GB
-swagger:
-  enabled: true
-mybatis-plus:
-  mapper-locations: classpath*:/mapper/*.xml
-  typeAliasesPackage: com.bnmotor.icv.tsp.message.model.*
-  global-config:
-    db-config:
-      # 表名前缀
-      table-prefix: tb_
-      dbColumnUnderline: true
-  configuration:
-    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ms-alibaba-consumer
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
 
-
-
+---
+spring:
+  profiles: dev
+  cloud:
+    nacos:
+      config:
+#        server-addr: http://10.210.100.17:8848
+        server-addr: http://localhost:8848
+        namespace: 10
+---
+spring:
+  profiles: test
+  cloud:
+    nacos:
+      config:
+        server-addr: http://10.210.100.120:8848
+        namespace: 9cb6ff52-e400-4685-8063-c9e1c7d7c2b7
+        group: TSP_GROUP
